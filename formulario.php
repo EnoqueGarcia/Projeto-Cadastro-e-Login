@@ -1,0 +1,211 @@
+<?php 
+
+if(isset($_POST['submit']))
+{
+
+   /* print_r('Nome: ' .$_POST['nome']);
+    print_r('<br>');
+    print_r('Email:'.$_POST['email']);
+    print_r('<br>');
+    print_r('Telefone:'.$_POST['telefone']);
+    print_r('<br>');
+    print_r('Sexo: '. $_POST['genero']);
+    print_r('<br>');
+    print_r('Data de nascimento: '. $_POST['data_nascimento']);
+    print_r('<br>');
+    print_r('Cidade: '. $_POST['cidade']);
+    print_r('<br>');
+    print_r('Estado'. $_POST['estado']);
+    print_r('<br>');
+    print_r('Endereço: '.$_POST['endereco']); */
+
+    include_once('config.php');
+
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+    $telefone = $_POST['telefone'];
+    $sexo = $_POST['genero'];
+    $data_nasc = $_POST['data_nascimento'];
+    $cidade = $_POST['cidade'];
+    $estado = $_POST['estado'];
+    $endereco = $_POST['endereco'];
+
+    $result = mysqli_query($conexao, "INSERT INTO usuarios(nome,email,senha,telefone,sexo,data_nasc,cidade,estado,endereco) VALUES('$nome','$email','$senha','$telefone','$sexo','$data_nasc','$cidade','$estado','$endereco')");
+
+}
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <style>
+    
+        body {
+       background-image: url(register.jpg);
+       background-size: cover;
+        }
+
+        .box {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.37);
+            border-radius: 5px;
+            padding: 8px;
+            color: white;
+            
+            
+
+        
+
+        }
+
+        fieldset {
+            border: 3px solid hsl(0, 0%, 100%);
+        }
+        legend {
+            border: 1px solid rgb(255, 255, 255);
+            padding: 10px;
+            text-align: center;
+            background-color: rgb(17, 17, 17);
+            border-radius: 5px;
+           
+        }
+        .inputBox{
+            position: relative;
+
+        }
+        .InputUser{
+            background: none;
+            border: none;
+            border-bottom: 1px solid white;
+            outline: none;
+            color: white;
+            font-size: 15px;
+            width: 100%;
+            letter-spacing: 2px;
+        }
+        .LabelInput {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            pointer-events: none;
+            transition: .5s;
+
+        }
+
+.InputUser:focus ~ .LabelInput, .InputUser:valid ~ .LabelInput{
+top: -15px;
+font-size: 12px;
+color: rgb(71, 66, 66);
+}
+
+
+
+
+     .nasc {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        border: none;
+        outline: none;
+        font-size: 15px;
+     }
+     
+     #submit{
+        background-color: rgb(71, 66, 66);
+width: 100%;
+border: none;
+padding: 15px;
+color: white;
+font-size: 15px;
+cursor: pointer;
+border-radius: 10px;
+     }
+     #submit:hover {
+        background-color: rgb(160, 151, 151);
+     }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <form action="formulario.php" method="POST">
+<fieldset>
+    <legend><b>Formulário de Clientes</b></legend>
+    <br>
+    <div class="inputBox">
+<input type="text" name="nome" id="nome" class="InputUser" required>
+<label for="nome" class="LabelInput">Nome completo</label>
+</div>
+<br>
+<div class="inputBox">
+<input type="password" name="senha" id="senha" class="InputUser" required>
+<label for="senha" class="LabelInput">Senha</label>
+</div>
+<br>
+<div class="inputBox">
+    <input type="text" name="email" id="email" class="InputUser" required>
+    <label for="email" class="LabelInput">E-mail</label>
+</div>
+<br>
+
+<div class="inputBox">
+    <input type="tel" name="telefone" id="telefone" class="InputUser" required>
+    <label for="telefone" class="LabelInput">Telefone</label>
+</div>
+
+
+<p>Sexo:</p>
+<input type="radio" id="feminino" name="genero" value="feminino" required>
+<label for="feminino" >Feminino</label>
+<br>
+<input type="radio" id="masculino" name="genero" value="masculino" required>
+<label for="masculino">Masculino</label>
+<br>
+
+<input type="radio" id="outro" name="genero" value="outro" required>
+<label for="outro">Outro</label>
+<br>
+
+    <div class="inputBox">
+        <label for="data_nascimento"><b>Data de nascimento:</b></label>
+<input type="date" name="data_nascimento" id="data_nascimento"  class="nasc" required>
+
+    </div>
+    
+    <div class="inputBox">
+        <input type="text" name="cidade" id="cidade" class="InputUser" required>
+        <label for="cidade" class="LabelInput">Cidade</label>
+    </div>
+    <br>
+   
+        <div class="inputBox">
+            <input type="text" name="estado" id="estado" class="InputUser" required>
+            <label for="estado" class="LabelInput">Estado</label>
+        </div>
+        <br>
+        <div class="inputBox">
+            <input type="text" name="endereco" id="endereco" class="InputUser" required>
+            <label for="endereco" class="LabelInput">Endereço</label>
+        </div>
+    <br>
+   <input type="submit" name="submit" id="submit">
+
+</fieldset>
+
+
+        </form>
+
+
+
+    </div>
+    
+</body>
+</html>
